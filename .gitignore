@@ -1,0 +1,12 @@
+# Carpetas de Python compilado
+__pycache__/
+
+# Entorno virtual
+venv/
+.venv/
+
+# Archivo de variables de entorno (claves, contraseñas, etc.)
+.env
+
+# Archivos de base de datos local 
+*.db
