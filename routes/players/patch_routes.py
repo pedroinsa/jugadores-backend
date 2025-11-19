@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.patch("/update-player")
-def update_player_route(player_info: schemas.PlayerUpdate, db: Session = Depends(get_db),current_user: models.User=Depends(get_current_user) ):
+def update_player_route(player_info: schemas.PlayerUpdate, db: Session = Depends(get_db), current_user: models.User=Depends(get_current_user) ):
     if current_user.created_player == False:
         raise HTTPException(status_code=400, detail="El usuario no ha creado ningún jugador todavía")
     player =  current_user.player

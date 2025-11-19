@@ -2,7 +2,7 @@ from fastapi import HTTPException
 import re
 import string
 import schemas
-from utils.checker_utils_func import validate_letters,validate_letters_spaces, validate_letters_spaces_dots_numbers, validate_numbers_season, validate_datetime_birth, capitalize_and_strip, check_white_spaces,field_validation, length_validator, validate_letters_spaces_dots
+from utils.checker_player_utils_func import validate_letters,validate_letters_spaces, validate_letters_spaces_dots_numbers, validate_numbers_season, validate_datetime_birth, capitalize_and_strip, check_white_spaces,field_validation, length_validator, validate_letters_spaces_dots
 
 
 

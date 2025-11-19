@@ -55,9 +55,9 @@ class PlayerCareer(PlayerCareerBase):
     model_config = ConfigDict(from_attributes=True)
 
 class PlayerCareerUpdate(BaseModel):
-     team: Optional[str]
-     date_start : Optional[date]
-     date_end :Optional[date] 
+     team: Optional[str] = None
+     date_start : Optional[date] = None
+     date_end: Optional[date] = None
 ### Players
 class PlayerData(BaseModel):
       id : int
@@ -145,7 +145,7 @@ class PostResponse(PostCreate):
 
 class PostModify(BaseModel):
      content: Optional[str] = Field(..., min_length= 5, max_length=300)
-     media_url : Optional[str]
+     media_url : Optional[str] = None
 
 ###Comments
 class CommentCreate(BaseModel):
