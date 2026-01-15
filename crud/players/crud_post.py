@@ -15,4 +15,10 @@ def create_player(db: Session, player: schemas.PlayerPostData, user_id: int ):
     db.refresh(new_player)
     return new_player
 
+#upload profile image
+def upload_profile_image_player(db: Session, player: models.Player, media_url: str | None):
+    player.image_url = media_url
+    db.commit()
+    db.refresh(player)
+    return player
 

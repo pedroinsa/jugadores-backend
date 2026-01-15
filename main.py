@@ -16,8 +16,14 @@ import routes.player_career.patch_routes as player_career_patch_routes
 import routes.posts.get_routes as posts_get_routes
 import routes.posts.post_routes as posts_post_routes
 import routes.posts.patch_routes as posts_patch_routes
-import routes.posts.delete_routes as post_delete_routes
-
+import routes.posts.delete_routes as posts_delete_routes
+import routes.comments.get_routes as comments_get_routes
+import routes.comments.post_routes as comments_post_routes
+import routes.comments.patch_routes as comments_patch_routes
+import routes.comments.delete_routes as comments_delete_routes
+import routes.likes.get_routes as likes_get_routes
+import routes.likes.post_routes as likes_post_routes
+import routes.likes.delete_routes as likes_delete_routes
 
 
 models.Base.metadata.create_all(bind=engine)
@@ -54,4 +60,13 @@ app.include_router(player_career_patch_routes.router)
 app.include_router(posts_get_routes.router)
 app.include_router(posts_post_routes.router)
 app.include_router(posts_patch_routes.router)
-app.include_router(post_delete_routes.router)
+app.include_router(posts_delete_routes.router)
+
+app.include_router(comments_get_routes.router)
+app.include_router(comments_post_routes.router)
+app.include_router(comments_patch_routes.router)
+app.include_router(comments_delete_routes.router)
+
+app.include_router(likes_get_routes.router)
+app.include_router(likes_post_routes.router)
+app.include_router(likes_delete_routes.router)

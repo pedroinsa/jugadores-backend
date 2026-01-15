@@ -5,7 +5,7 @@ from models import Post
 
 #delete post
 
-def delete_post (db: Session, post: Post, post_id: int):
+def delete_post (db: Session, post: Post):
      
      db.delete(post)
      db.commit()

@@ -124,13 +124,37 @@ class PlayerUpdate (BaseModel):
            return value  
             
 
+###Likes
 
+class LikeResponse(BaseModel):
+     id: int
+     post_id: int
+     user_id: int
+     created_at: datetime
+
+###Comments
+class CommentCreate(BaseModel):
+     content : str 
+
+class CommentResponse(BaseModel) :
+     id: int 
+     post_id: int
+     user_id : int
+     content: str 
+     created_at: datetime
+     user: UserResponse
+
+     model_config = ConfigDict(from_attributes=True)
+     
+
+class CommentModify(BaseModel):
+     content: str
 
 
 ### Post
 
 class PostCreate(BaseModel):
-     content : str = Field(..., min_length= 5, max_length=300)
+     content : str
      media_url: Optional[str] = None
 
 class PostResponse(PostCreate):
@@ -143,32 +167,19 @@ class PostResponse(PostCreate):
 
       model_config = ConfigDict(from_attributes=True)
 
+class PostResponseSimple(PostCreate):
+      id: int
+      player_id : int  
+      created_at :  datetime     
+      comments : Optional[List[CommentResponse]] = []
+      likes : Optional[List[LikeResponse]] = []
+
+      model_config = ConfigDict(from_attributes=True)      
+
 class PostModify(BaseModel):
-     content: Optional[str] = Field(..., min_length= 5, max_length=300)
+     content: Optional[str] = None
      media_url : Optional[str] = None
 
-###Comments
-class CommentCreate(BaseModel):
-     content : str = Field(..., min_length=1,max_length=250)
-
-class CommentResponse(BaseModel) :
-     id: int 
-     post_id: int
-     user_id : int
-     content: str = Field(min_length=1,max_length=250)
-     created_at: datetime
-     user: UserResponse
-
-     model_config = ConfigDict(from_attributes=True)
-
-class CommentModify(BaseModel):
-     content: str = Field(min_length=1,max_length=250)
 
 
-###Likes
 
-class LikeResponse(BaseModel):
-     id: int
-     post_id: int
-     user_id: int
-     created_at: datetime

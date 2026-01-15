@@ -14,7 +14,7 @@ class User(Base):
      password = Column(String)
      role = Column(Enum("user", "admin", "superadmin",name = "user_roles"), default="user")
      created_player = Column(Boolean, default=False)
-     created_at = Column(Date, default = datetime.now(timezone.utc))
+     created_at = Column(Date, default=lambda: datetime.now(timezone.utc).date())
      is_active = Column(Boolean, default=True)
      deactivated_by_some_manager = Column(Boolean, default = False)
      
@@ -67,7 +67,7 @@ class Post(Base):
     player_id = Column(Integer, ForeignKey("players.id"))
     content =  Column(String)
     media_url = Column(String)
-    created_at = Column(Date, default = datetime.now(timezone.utc))
+    created_at = Column(Date, default=lambda: datetime.now(timezone.utc).date())
     player = relationship("Player", back_populates="posts")
     comments = relationship("Comment", back_populates="post", cascade="all, delete")
     likes = relationship("Like", back_populates="post", cascade="all, delete")
@@ -78,7 +78,7 @@ class Comment(Base):
      post_id = Column(Integer, ForeignKey("posts.id"))
      user_id  = Column(Integer, ForeignKey("users.id"))
      content = Column(String)
-     created_at = Column(Date, default = datetime.now(timezone.utc))
+     created_at = Column(Date, default=lambda: datetime.now(timezone.utc).date())
      post = relationship("Post", back_populates="comments")
      user = relationship("User", back_populates="comments")
 class Like (Base):
@@ -86,7 +86,7 @@ class Like (Base):
      id =Column(Integer, primary_key=True, index= True)
      post_id = Column(Integer, ForeignKey("posts.id"))
      user_id = Column(Integer, ForeignKey("users.id"))
-     created_at = Column(Date, default = datetime.now(timezone.utc))
+     created_at = Column(Date, default=lambda: datetime.now(timezone.utc).date())
      post = relationship("Post", back_populates="likes")
      user = relationship("User", back_populates="likes")
 
